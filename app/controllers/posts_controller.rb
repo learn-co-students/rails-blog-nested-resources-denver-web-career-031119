@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @tags = @post.tags.new
+    @comment = Comment.create(params.require(:comment).permit(:content, :post_id, :user_id))
   end
 
   def edit
