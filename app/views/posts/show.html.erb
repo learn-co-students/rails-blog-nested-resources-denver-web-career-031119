@@ -10,6 +10,21 @@
   <li><%= tag.name %></li>
   <% end %>
 </ul>
+<% @post.comments.each do |comment| %>
+<%= comment.content %> <br>
+<% end %>
+
+
+<%= form_for [@post, Comment.new] do |f| %>
+<%= f.label :content %>
+<%= f.text_field :content %>
+<%= f.hidden_field :post_id, :value => @post.id %>
+<%= f.submit 'Create Comment' %>
+<% end %>
+
+
+
+
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
