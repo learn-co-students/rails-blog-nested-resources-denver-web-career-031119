@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = Comment.where(post_id = "#{params[:id]}")
   end
 
   def new
@@ -42,6 +44,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+
+    # @comment = Comment.where(post_id = "#{@post.id}")
+    # # byebug
+    # # @comment.each{ |comment| comment.delete}
+    # Comment.destroy(@comment)
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url }
